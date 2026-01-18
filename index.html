@@ -42,7 +42,7 @@ tw-link {
 
 *The villagers disappeared one after another. The village has become desolated. Soon after, the same case happened to the mainland. Nowhere is safe...*
 
---End--</tw-passagedata><tw-passagedata pid="4" name="Eat breakfast" tags="" position="825,450" size="100,100">(set:$eatBreakfast to true)
+--End--</tw-passagedata><tw-passagedata pid="4" name="Eat breakfast" tags="" position="775,575" size="100,100">(set:$eatBreakfast to true)
 
 **Player:** I should eat first. I&#39;ll need it for later.
 
@@ -50,19 +50,12 @@ tw-link {
 
 **Player:** Coming!! Who are you?
 
-**Childhood Friend:** its me!  ___!
+**Childhood Friend:** It&#39;s me!  ___!
 
 **Player:** It&#39;s my childhood friend.
 
-*The player opens the door and sees his childhood friend.*
-
-**Player:** What&#39;s up? What brings you here?
-
-**Childhood Friend:** what u doing?
-
-**Player:** I&#39;m eating breakfast right now.
-
-**Childhood Friend:** okie ill wait for u so lets hang out!</tw-passagedata><tw-passagedata pid="5" name="Watch TV" tags="" position="1175,475" size="100,100">(set: $watchTV to true)
+**Player:** I should open the door.
+-&gt; (set: $openDoor to true)[[Open the door-&gt;Go outside]] </tw-passagedata><tw-passagedata pid="5" name="Watch TV" tags="" position="1175,475" size="100,100">(set: $watchTV to true)
 
 *The player watches TV. While watching, a knock was coming from the front door. The player is too busy watching and didn&#39;t open the door.*
 
@@ -71,27 +64,75 @@ tw-link {
 *The player turns off the TV.*
 
 **Player:** The morning news is always so dumb. I should do something else.
--&gt; [[Go outside]]</tw-passagedata><tw-passagedata pid="6" name="Go outside" tags="" position="950,700" size="100,100">(set: $goOutside to true)
+-&gt; [[Go outside]]</tw-passagedata><tw-passagedata pid="6" name="Go outside" tags="" position="1025,675" size="100,100">(set: $goOutside to true)
 
-**Player:** I should go out. (if: $watchTV is not true)[I don&#39;t have time for leisure.]
+(if: $openDoor is true)[**Player:** What brings you here?
 
-*The player opens the door and sees his childhood friend before their front door.*
+**Childhood Friend:** What are you doing?
 
-**Childhood Friend:** woah! its like u knew that im outside!
+**Player:** I&#39;m eating breakfast right now.](if: $watchTV is true )[**Player:** I should go out. 
 
-(if: $watchTV is true)[**Player:** What are you doing here again?
+**Player:** What are you doing here again?
 
-**Childhood Friend:** again? what do u mean?
+**Childhood Friend:** Again? What do you mean?
 
 **Player:** Don&#39;t lie. I know you knocked before. I didn&#39;t open you up because I was busy watching.
 
-**Childhood Friend:** lol i just got here. anyways, r u going out?](else:)[**Player:** You know that&#39;s not possible. What brings you here?
+**Childhood Friend:** What, I just got here. Anyways, are you going out?](else-if: $watchTV is not true and $openDoor is not true)[**Player:** I should go out. I don&#39;t have time for leisure.
 
-**Childhood Friend:** r u going out?
+*The player opens the door and sees his childhood friend before their front door.*
 
-**Player:** You didn&#39;t answer me.. but yes.]
+**Childhood Friend:** Woah! It&#39;s like you knew I was here!
 
-**Childhood Friend:** ill join u! let&#39;s hang out!</tw-passagedata></tw-storydata>
+**Player:** You know that&#39;s not possible. What brings you here?
+
+**Childhood Friend:** Are you going out?
+
+**Player:** Yes.]
+
+**Childhood Friend:** (if: $openDoor is not true)[I&#39;ll join,](else:)[Okie, I&#39;ll wait for you to finish then] let&#39;s hang out!
+
+*The player and their childhood friend went outside. They player and their childhood friend hangs out at the nearby pond.*
+
+**Childhood Friend:** How are you? You know.. ever since your family went missing..
+
+**Player:** I&#39;m fine. I&#39;ve decided to find out where they have gone missing.
+
+**Childhood Friend:** You&#39;re strong. I&#39;m glad that you didn&#39;t leave. Leaving feels pointless, anyways.
+
+**Player:** Why do you say that?
+
+**Childhood Friend:** Don&#39;t let anyone know but it seems that someone in this village knows what&#39;s causing the disappearances.
+
+**Player:** What do you mean &quot;what&quot;?
+
+**Childhood Friend:** The old man seems to be out during Takipsilim. Heard he knows something.
+
+**Player:** That might help me with my case. What should I do..?
+-&gt; [[Press for more details]]
+-&gt; [[Change the subject]]</tw-passagedata><tw-passagedata pid="7" name="Press for more details" tags="" position="925,825" size="100,100">(set: $pressDetails to true)
+
+**Player:** Can you tell me more about it?
+
+**Childhood Friend:** Not feeling it right now.
+
+**Player:** Oh, come on! You know I need it that&#39;s why you told me about it and now you&#39;re gonna stop halfway!?
+
+**Childhood Friend:** ... ...
+
+**Player:** Fine! I&#39;ll do this on my own.
+
+*The player leaves the conversation.*</tw-passagedata><tw-passagedata pid="8" name="Change the subject" tags="" position="1125,825" size="100,100">(set: $changeSubject to true)
+
+**Player:** Well, let&#39;s not worry about that first. Do you have plans for later?
+
+**Childhood Friend:** Not really, there&#39;s nothing exciting to do here.
+
+**Player:** Do you wanna stay over the night?
+
+**Childhood Friend:** Oh.. actually, I might be busy tonight. Sorry.
+
+**Player:** That&#39;s okay. Let&#39;s talk again soon.</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
